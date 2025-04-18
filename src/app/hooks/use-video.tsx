@@ -1,21 +1,7 @@
-import { createContext, ReactNode, useContext } from "react";
+import { useContext } from "react";
+import { VideoContext } from "../context/video-context";
 
-export type Video = {
-  id: string;
-  channelId: string;
-  likes: number;
-  dislikes: number;
-  currentSeekTime: number;
-};
-
-const VideoContext = createContext<
-  | {
-      video: Video;
-    }
-  | undefined
->(undefined);
-
-export const useYoutube = () => {
+export const useVideo = () => {
   const ctx = useContext(VideoContext);
 
   if (!ctx) {
@@ -24,10 +10,3 @@ export const useYoutube = () => {
 
   return ctx;
 };
-
-export default function VideoProvider({ children }: { children: ReactNode }) {
-  // fetch video details here using the video id
-  return (
-    <VideoContext.Provider value={undefined}>{children}</VideoContext.Provider>
-  );
-}
