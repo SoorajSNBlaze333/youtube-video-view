@@ -6,7 +6,7 @@ import { UserProvider } from "./context/profile-context";
 import { VideoProvider } from "./context/video-context";
 
 export default function Home() {
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode] = useState(false);
 
   useEffect(() => {
     const root = window.document.documentElement;
