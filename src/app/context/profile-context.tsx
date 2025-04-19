@@ -12,6 +12,8 @@ export const UserContext = createContext<
 >(undefined);
 
 export function UserProvider({ children }: { children: ReactNode }) {
+  // const userId = "H8nqZdjoMsxZLrsCB9nlrWfYPEXBBCkn";
+
   // fetch user details here using the user id
   return (
     <UserContext.Provider value={undefined}>{children}</UserContext.Provider>

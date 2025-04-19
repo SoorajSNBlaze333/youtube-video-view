@@ -16,6 +16,8 @@ export const VideoContext = createContext<
 >(undefined);
 
 export function VideoProvider({ children }: { children: ReactNode }) {
+  // const videoId = "dyLG7sbAZJ5";
+
   // fetch video details here using the video id
   return (
     <VideoContext.Provider value={undefined}>{children}</VideoContext.Provider>

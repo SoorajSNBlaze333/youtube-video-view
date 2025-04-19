@@ -6,7 +6,7 @@ export default function SearchBar() {
   const searchBarRef = useRef(null);
 
   return (
-    <section className="col-span-4 flex justify-center items-center gap-4">
+    <section className="col-span-5 flex justify-center items-center gap-4">
       <div
         ref={searchBarRef}
         className="flex justify-between items-center w-full"
