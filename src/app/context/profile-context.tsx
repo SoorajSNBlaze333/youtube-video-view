@@ -14,9 +14,6 @@ export const UserContext = createContext<
 export function UserProvider({ children }: { children: ReactNode }) {
   // fetch user details here using the user id
   return (
-    <UserContext.Provider value={undefined}>
-      <nav className="w-full border-2 p-4">Navbar here</nav>
-      {children}
-    </UserContext.Provider>
+    <UserContext.Provider value={undefined}>{children}</UserContext.Provider>
   );
 }
