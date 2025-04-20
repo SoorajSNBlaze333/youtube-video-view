@@ -1,25 +1,50 @@
-import { createContext, ReactNode } from "react";
+import { createContext, ReactNode, useEffect, useState } from "react";
+
+export type VideoTag = {
+  id: string;
+  displayName: string;
+};
 
 export type Video = {
   id: string;
-  channelId: string;
-  likes: number;
-  dislikes: number;
-  currentSeekTime: number;
+  tags: VideoTag[];
+  isLoading: boolean;
+  // channelId: string;
+  // likes: number;
+  // dislikes: number;
+  // currentSeekTime: number;
 };
 
-export const VideoContext = createContext<
-  | {
-      video: Video;
-    }
-  | undefined
->(undefined);
+const initialData: Video = {
+  id: "",
+  tags: [],
+  isLoading: false,
+};
+
+export const VideoContext = createContext<{
+  video: Video;
+  selectedTag: string;
+}>({ video: initialData, selectedTag: "" });
 
 export function VideoProvider({ children }: { children: ReactNode }) {
-  // const videoId = "dyLG7sbAZJ5";
+  const [video, setVideo] = useState<Video>(initialData);
+  const [selectedTag, setSelectedTag] = useState<string>("");
 
-  // fetch video details here using the video id
+  useEffect(() => {
+    const fetchVideoDetails = async (videoId: string) => {
+      setVideo((prev) => ({ ...prev, isLoading: true }));
+      const response = await fetch(`/api/mock/videos/${videoId}`);
+      const data = await response.json();
+      setVideo({ ...data, isLoading: false });
+      setSelectedTag(data.tags[0].id);
+    };
+
+    fetchVideoDetails("eIcWmL");
+  }, []);
+
   return (
-    <VideoContext.Provider value={undefined}>{children}</VideoContext.Provider>
+    <VideoContext.Provider value={{ video, selectedTag }}>
+      {children}
+    </VideoContext.Provider>
   );
 }

@@ -1,4 +1,19 @@
 @import "tailwindcss";
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .custom-shadow-left {
+    background: linear-gradient(to right,white 20%,rgba(255,255,255,0) 80%)
+  }
+  .custom-shadow-right {
+    background: linear-gradient(to left,white 20%,rgba(255,255,255,0) 80%)
+  }
+}
 
 html, body, :root {
   height: 100vh;

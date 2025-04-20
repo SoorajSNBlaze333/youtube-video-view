@@ -40,7 +40,6 @@ export function UserProvider({ children }: { children: ReactNode }) {
     fetchUserDetails("108200847501413324737");
   }, []);
 
-  // fetch user details here using the user id
   return (
     <UserContext.Provider value={{ profile }}>{children}</UserContext.Provider>
   );
