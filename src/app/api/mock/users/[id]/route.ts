@@ -1,10 +1,14 @@
 import { NextResponse } from "next/server";
 
-const users = [
-  { id: "1", name: "Alice" },
-  { id: "2", name: "Bob" },
-];
-
 export async function GET() {
-  return NextResponse.json(users);
+  const user = {
+    id: "108200847501413324737",
+    name: "John Doe",
+    given_name: "John",
+    family_name: "Doe",
+    email: "john.doe@example.com",
+    picture: "https://i.pravatar.cc/200",
+    locale: "en-US",
+  };
+  return NextResponse.json(user);
 }

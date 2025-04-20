@@ -1,21 +1,47 @@
-import { createContext, ReactNode } from "react";
+import { createContext, ReactNode, useEffect, useState } from "react";
 
 export type Profile = {
   id: string;
+  name: string;
+  given_name: string;
+  family_name: string;
+  email: string;
+  picture: string;
+  locale: string;
+  isLoading: boolean;
 };
 
-export const UserContext = createContext<
-  | {
-      profile: Profile;
-    }
-  | undefined
->(undefined);
+const initialValue: Profile = {
+  id: "",
+  name: "",
+  given_name: "",
+  family_name: "",
+  email: "",
+  picture: "",
+  locale: "",
+  isLoading: false,
+};
+
+export const UserContext = createContext<{
+  profile: Profile;
+}>({ profile: initialValue });
 
 export function UserProvider({ children }: { children: ReactNode }) {
-  // const userId = "H8nqZdjoMsxZLrsCB9nlrWfYPEXBBCkn";
+  const [profile, setProfile] = useState<Profile>(initialValue);
+
+  useEffect(() => {
+    const fetchUserDetails = async (userId: string) => {
+      setProfile((prev) => ({ ...prev, isLoading: true }));
+      const response = await fetch(`/api/mock/users/${userId}`);
+      const data = await response.json();
+      setProfile({ ...data, isLoading: false });
+    };
+
+    fetchUserDetails("108200847501413324737");
+  }, []);
 
   // fetch user details here using the user id
   return (
-    <UserContext.Provider value={undefined}>{children}</UserContext.Provider>
+    <UserContext.Provider value={{ profile }}>{children}</UserContext.Provider>
   );
 }
