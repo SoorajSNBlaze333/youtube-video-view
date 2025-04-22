@@ -30,32 +30,17 @@ const tags = [
     displayName: "From Channel F",
   },
 ];
-const shorts = [
-  {
-    id: "1",
-    thumbnail: "",
-    title: "This is a great Short! Awesome",
-    views: "100K",
-  },
-  {
-    id: "2",
-    thumbnail: "",
-    title: "This is a great Short 2! Awesome",
-    views: "3.1M",
-  },
-  {
-    id: "3",
-    thumbnail: "",
-    title: "This is a great Short 3! Awesome",
-    views: "524",
-  },
-];
 
 export async function GET() {
   const video = {
     id: "eIcWmL",
     tags,
-    related_shorts: shorts,
+    title: "This is an Amazing Video! - Sooraj Sivadasan Nair",
+    channel: {
+      id: "2efcfw",
+      name: "Channel A",
+      subscribers: "961K subscribers",
+    },
   };
   return NextResponse.json(video);
 }

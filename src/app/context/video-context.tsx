@@ -5,28 +5,27 @@ export type VideoTag = {
   displayName: string;
 };
 
-export type Short = {
-  id: string;
-  thumbnail: string;
-  title: string;
-  views: string;
+export type Channel = {
+  name: string;
+  subscribers: string;
 };
 
 export type Video = {
   id: string;
   tags: VideoTag[];
-  related_shorts: Short[];
+  title: string;
+  channel: Channel;
   isLoading: boolean;
-  // channelId: string;
-  // likes: number;
-  // dislikes: number;
-  // currentSeekTime: number;
 };
 
 const initialData: Video = {
   id: "",
   tags: [],
-  related_shorts: [],
+  title: "",
+  channel: {
+    name: "",
+    subscribers: "",
+  },
   isLoading: false,
 };
 

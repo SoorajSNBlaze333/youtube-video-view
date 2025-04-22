@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Youtube Clone",
+  title: "Y Clone",
   description: "A simple youtube preview clone",
 };
 
