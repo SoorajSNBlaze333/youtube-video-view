@@ -1,7 +1,17 @@
-export default function ShortVideo({ short }: { short: string }) {
+import { EllipsisVerticalIcon } from "@heroicons/react/24/solid";
+import { Short } from "../context/video-context";
+
+export default function ShortVideo({ short }: { short: Short }) {
   return (
-    <div className="bg-slate-300 col-span-1 aspect-[9/16] rounded-md flex justify-center items-center">
-      {short}
+    <div className="col-span-1 flex flex-col justify-center items-start gap-2">
+      <div className="bg-slate-300 aspect-[9/16] w-full rounded-md"></div>
+      <div className="flex items-center gap-2">
+        <p className="font-bold overflow-hidden text-ellipsis line-clamp-2">
+          {short.title}
+        </p>
+        <EllipsisVerticalIcon className="size-12 text-black" />
+      </div>
+      <p className="text-gray-700 text-sm">{short.views} views</p>
     </div>
   );
 }

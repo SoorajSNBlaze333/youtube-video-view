@@ -5,9 +5,17 @@ export type VideoTag = {
   displayName: string;
 };
 
+export type Short = {
+  id: string;
+  thumbnail: string;
+  title: string;
+  views: string;
+};
+
 export type Video = {
   id: string;
   tags: VideoTag[];
+  related_shorts: Short[];
   isLoading: boolean;
   // channelId: string;
   // likes: number;
@@ -18,6 +26,7 @@ export type Video = {
 const initialData: Video = {
   id: "",
   tags: [],
+  related_shorts: [],
   isLoading: false,
 };
 
