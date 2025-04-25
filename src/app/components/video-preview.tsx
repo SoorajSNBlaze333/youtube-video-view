@@ -1,9 +1,15 @@
 import { CheckCircleIcon } from "@heroicons/react/24/solid";
 import { RelatedVideo } from "../context/related-videos-context";
+import { motion } from "motion/react";
+
+const item = {
+  hidden: { opacity: 0, scale: 0.9 },
+  show: { opacity: 1, scale: 1 },
+};
 
 export default function VideoPreview({ video }: { video: RelatedVideo }) {
   return (
-    <div className="grid grid-cols-11 gap-2 mb-2">
+    <motion.div variants={item} className="grid grid-cols-11 gap-2 mb-2">
       <div
         className="col-span-5 rounded-lg bg-no-repeat bg-cover aspect-video relative cursor-pointer"
         style={{ backgroundImage: `url(${video.thumbnail})` }}
@@ -36,6 +42,6 @@ export default function VideoPreview({ video }: { video: RelatedVideo }) {
           </p>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 }

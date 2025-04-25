@@ -2,6 +2,24 @@ import { useScroll, motion, useMotionValueEvent } from "motion/react";
 import { useVideo } from "../hooks/use-video";
 import { useRef, useState } from "react";
 
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      duration: 0.15,
+      type: "spring",
+      staggerChildren: 0.1,
+      bounce: 0.2,
+    },
+  },
+};
+
+const item = {
+  hidden: { opacity: 0 },
+  show: { opacity: 1 },
+};
+
 export default function VideoTags() {
   const { video, selectedTag } = useVideo();
   const { tags } = video;
@@ -23,10 +41,14 @@ export default function VideoTags() {
     <div className="overflow-hidden relative">
       <motion.section
         ref={ref}
+        variants={container}
+        initial="hidden"
+        animate="show"
         className="flex flex-nowrap justify-start items-center gap-2 overflow-x-auto no-scrollbar"
       >
         {tags.map((tag, index) => (
-          <div
+          <motion.div
+            variants={item}
             key={index}
             className={`rounded-lg py-1.5 px-3 text-sm w-fit whitespace-nowrap font-semibold text-center cursor-pointer ${
               tag.id === selectedTag
@@ -35,7 +57,7 @@ export default function VideoTags() {
             }`}
           >
             {tag.displayName}
-          </div>
+          </motion.div>
         ))}
       </motion.section>
       {scrollOptions.left && (
