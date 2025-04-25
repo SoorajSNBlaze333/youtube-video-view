@@ -41,7 +41,7 @@ export function VideoProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const fetchVideoDetails = async (videoId: string) => {
       setVideo((prev) => ({ ...prev, isLoading: true }));
-      const response = await fetch(`/api/mock/videos/${videoId}`);
+      const response = await fetch(`/api/mock/video/${videoId}`);
       const data = await response.json();
       setVideo({ ...data, isLoading: false });
       setSelectedTag(data.tags[0].id);

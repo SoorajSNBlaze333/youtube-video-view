@@ -7,23 +7,24 @@ export async function GET(
   const shorts = [
     {
       id: "1",
-      thumbnail: "",
-      title: "This is a great Short! Awesome",
+      thumbnail: "thumbnail-1.jpg",
+      title: "This forest in America is the most exotic forest ever!!",
       views: "100K",
     },
     {
       id: "2",
-      thumbnail: "",
-      title: "This is a great Short 2! Awesome",
+      thumbnail: "thumbnail-2.jpg",
+      title: "The Amount on Calories in this drink is beyond",
       views: "3.1M",
     },
     {
       id: "3",
-      thumbnail: "",
-      title: "This is a great Short 3! Awesome",
+      thumbnail: "thumbnail-3.jpg",
+      title: "Motivation to Live! Wake up at 6a.m",
       views: "524",
     },
   ];
+
   const shortsResponse = {
     videoId: params?.id,
     shorts,

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { UserProvider } from "./context/profile-context";
 import { VideoProvider } from "./context/video-context";
 import { ShortsProvider } from "./context/shorts-context";
+import { RelatedVideosProvider } from "./context/related-videos-context";
 import App from "./app";
 
 export default function Home() {
@@ -22,7 +23,9 @@ export default function Home() {
     <UserProvider>
       <VideoProvider>
         <ShortsProvider>
-          <App />
+          <RelatedVideosProvider>
+            <App />
+          </RelatedVideosProvider>
         </ShortsProvider>
       </VideoProvider>
     </UserProvider>
