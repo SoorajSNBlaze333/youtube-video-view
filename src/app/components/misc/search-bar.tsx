@@ -63,12 +63,12 @@ export default function SearchBar() {
           onFocus={() => setIsSearchFocused(true)}
           onBlur={() => setIsSearchFocused(false)}
         />
-        <button className="border-[1px] border-l-0 border-gray-300 px-4 py-2.5 pl-6 transition-all rounded-r-full bg-gray-100 cursor-pointer hover:bg-gray-200">
+        <button className="border-[1px] border-l-0 border-gray-300 px-4 py-2.5 pl-6 rounded-r-full bg-gray-100 cursor-pointer hover:bg-gray-200">
           <MagnifyingGlassIcon className="size-5" />
         </button>
         {renderDropdown()}
       </div>
-      <button className="p-2.5 rounded-full transition-all bg-gray-100 cursor-pointer hover:bg-gray-200">
+      <button className="p-2.5 rounded-full bg-gray-100 cursor-pointer hover:bg-gray-200">
         <MicrophoneIcon className="size-5" />
       </button>
     </section>

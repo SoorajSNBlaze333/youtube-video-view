@@ -32,7 +32,8 @@ const initialData: Video = {
 export const VideoContext = createContext<{
   video: Video;
   selectedTag: string;
-}>({ video: initialData, selectedTag: "" });
+  handleTagSelection: (tag: string) => void;
+}>({ video: initialData, selectedTag: "", handleTagSelection: () => {} });
 
 export function VideoProvider({ children }: { children: ReactNode }) {
   const [video, setVideo] = useState<Video>(initialData);
@@ -50,8 +51,12 @@ export function VideoProvider({ children }: { children: ReactNode }) {
     fetchVideoDetails("eIcWmL");
   }, []);
 
+  const handleTagSelection = (selectedTag: string) => {
+    setSelectedTag(selectedTag);
+  };
+
   return (
-    <VideoContext.Provider value={{ video, selectedTag }}>
+    <VideoContext.Provider value={{ video, selectedTag, handleTagSelection }}>
       {children}
     </VideoContext.Provider>
   );

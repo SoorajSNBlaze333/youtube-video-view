@@ -25,6 +25,7 @@ export const ShortsContext = createContext<Shorts>(initialData);
 export function ShortsProvider({ children }: { children: ReactNode }) {
   const {
     video: { id },
+    selectedTag,
   } = useVideo();
   const [shortsData, setShortsData] = useState<Shorts>(initialData);
 
@@ -39,7 +40,7 @@ export function ShortsProvider({ children }: { children: ReactNode }) {
     if (id) {
       fetchShorts(id);
     }
-  }, [id]);
+  }, [id, selectedTag]);
 
   return (
     <ShortsContext.Provider value={{ ...shortsData }}>

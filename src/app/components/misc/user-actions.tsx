@@ -5,7 +5,7 @@ import Profile from "./profile";
 export default function UserActions() {
   return (
     <div className="col-span-2 flex justify-end items-center gap-4">
-      <button className="transition-all rounded-full bg-gray-100 p-2 pr-4 flex gap-1 justify-center items-center cursor-pointer hover:bg-gray-200">
+      <button className="rounded-full bg-gray-100 p-2 pr-4 flex gap-1 justify-center items-center cursor-pointer hover:bg-gray-200">
         <PlusIcon className="size-6" />
         <p className="text-black font-bold text-sm">Create</p>
       </button>

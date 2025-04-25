@@ -36,6 +36,7 @@ export const RelatedVideosContext = createContext<{
 export function RelatedVideosProvider({ children }: { children: ReactNode }) {
   const {
     video: { id, isLoading },
+    selectedTag,
   } = useVideo();
   const [relatedVideos, setRelatedVideos] =
     useState<RelatedVideos>(initialData);
@@ -49,7 +50,7 @@ export function RelatedVideosProvider({ children }: { children: ReactNode }) {
     };
 
     if (!isLoading && id) fetchVideos(id);
-  }, [id, isLoading]);
+  }, [id, isLoading, selectedTag]);
 
   return (
     <RelatedVideosContext.Provider value={{ relatedVideos }}>
