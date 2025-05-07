@@ -13,6 +13,11 @@
   .custom-shadow-right {
     background: linear-gradient(to left,white 20%,rgba(255,255,255,0) 80%)
   }
+
+  .centered {
+    right: 50%;
+    transform: translate(50%, 0);
+  }
 }
 
 html, body, :root {
@@ -23,3 +28,4 @@ html, body, :root {
 html {
   overflow: hidden;
 }
+
