@@ -1,12 +1,10 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
 import { useVideo } from "../hooks/use-video";
 import { CommentInput } from "../components/inputs/comment-input";
-import {
-  HandThumbDownIcon,
-  HandThumbUpIcon,
-} from "@heroicons/react/24/outline";
+
 import { motion } from "motion/react";
-import Profile from "../components/misc/profile";
+import { Loader } from "../components/misc/loader";
+import { CommentComponent } from "../components/comments/comment";
 
 const container = {
   hidden: { opacity: 0 },
@@ -21,18 +19,15 @@ const container = {
   },
 };
 
-const item = {
-  hidden: { opacity: 0 },
-  show: { opacity: 1 },
-};
-
 export type Comment = {
+  id: string;
   picture: string;
   commenter: string;
   commented: string;
   comment: string;
   likes: number;
   dislikes: number;
+  replies: number;
 };
 
 export type Comments = {
@@ -53,24 +48,9 @@ const getCommentText = (comments: Comment[]) => {
   return `${comments.length} ${comments.length > 1 ? " Comments" : " Comment"}`;
 };
 
-const colors = [
-  "bg-red-400",
-  "bg-blue-400",
-  "bg-pink-400",
-  "bg-emerald-400",
-  "bg-green-400",
-  "bg-orange-400",
-];
-
-const getRandomBackground = () => {
-  const num = Math.floor(Math.random() * colors.length);
-  return colors[num];
-};
-
 export function CommentsProvider({ children }: { children: ReactNode }) {
   const {
     video: { id },
-    selectedTag,
   } = useVideo();
   const [comments, setComments] = useState<Comments>(initialData);
 
@@ -85,52 +65,11 @@ export function CommentsProvider({ children }: { children: ReactNode }) {
     if (id) {
       fetchComments(id);
     }
-  }, [id, selectedTag]);
-
-  const renderComment = (comment: Comment, index: number) => {
-    return (
-      <motion.div
-        variants={item}
-        key={index}
-        className="flex w-full justify-start items-start gap-4"
-      >
-        {comment.picture.length ? (
-          <Profile url={comment.picture} size="10" />
-        ) : (
-          <div
-            className={`h-10 w-10 aspect-square ${getRandomBackground()} text-white font-semibold text-lg flex justify-center items-center rounded-full cursor-pointer`}
-          >
-            {comment.commenter.toUpperCase().charAt(1)}
-          </div>
-        )}
-        <div className="flex flex-col w-full gap-1">
-          <span className="flex justify-start items-center gap-2">
-            <p className="text-gray-700 text-sm font-semibold">
-              {comment.commenter}
-            </p>
-            <p className="text-xs text-gray-600">{comment.commented}</p>
-          </span>
-          <p className="text-sm">{comment.comment}</p>
-          <div className="flex justify-start items-center gap-2">
-            <button className="inline-flex justify-center items-center gap-1">
-              <HandThumbUpIcon className="size-5" />
-              <p className="text-xs text-gray-600 ">{comment.likes}</p>
-            </button>
-            <button className="inline-flex justify-center items-center gap-1">
-              <HandThumbDownIcon className="size-5" />
-              {comment.dislikes > 0 && (
-                <p className="text-xs text-gray-600">{comment.dislikes}</p>
-              )}
-            </button>
-          </div>
-        </div>
-      </motion.div>
-    );
-  };
+  }, [id]);
 
   const renderComments = () => {
     if (!comments.comments.length || comments.isLoading) {
-      return <div>Loading...</div>;
+      return <Loader />;
     }
     return (
       <div className="mt-4">
@@ -142,7 +81,9 @@ export function CommentsProvider({ children }: { children: ReactNode }) {
           animate="show"
           className="flex flex-col gap-6 mt-5"
         >
-          {comments.comments.map(renderComment)}
+          {comments.comments.map((comment: Comment, index: number) => (
+            <CommentComponent comment={comment} key={index} />
+          ))}
         </motion.div>
       </div>
     );
