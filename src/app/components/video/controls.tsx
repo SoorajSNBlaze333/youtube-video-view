@@ -9,11 +9,13 @@ import {
   Rectangle,
   SkipForward,
   SpeakerHigh,
+  SpeakerLow,
+  SpeakerSlash,
   Subtitles,
 } from "@phosphor-icons/react";
 import { Switch } from "@headlessui/react";
 import { useControls } from "@/app/hooks/use-controls";
-import { motion, PanInfo } from "motion/react";
+import { AnimatePresence, motion, PanInfo } from "motion/react";
 
 export default function Controls({ children }: { children: ReactNode }) {
   const {
@@ -30,6 +32,8 @@ export default function Controls({ children }: { children: ReactNode }) {
     hideControls,
     setPercentage,
     animatePlay,
+    volume,
+    setVolume,
   } = useControls();
   const constraintsRef = useRef<HTMLDivElement | null>(null);
 
@@ -63,6 +67,31 @@ export default function Controls({ children }: { children: ReactNode }) {
     } else {
       playVideo();
     }
+  };
+
+  const renderVolume = () => {
+    let Icon;
+    if (volume <= 0) {
+      Icon = SpeakerSlash;
+    } else if (volume > 50) {
+      Icon = SpeakerHigh;
+    } else {
+      Icon = SpeakerLow;
+    }
+
+    return (
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={Icon.displayName}
+          initial={{ opacity: 0.7 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0.7 }}
+          transition={{ duration: 0.2 }}
+        >
+          <Icon className="cursor-pointer" weight="fill" size={24} />
+        </motion.div>
+      </AnimatePresence>
+    );
   };
 
   return (
@@ -144,7 +173,16 @@ export default function Controls({ children }: { children: ReactNode }) {
               />
             )}
             <SkipForward className="cursor-pointer" weight="fill" size={24} />
-            <SpeakerHigh className="cursor-pointer" weight="fill" size={24} />
+            {renderVolume()}
+            <input
+              type="range"
+              min={0}
+              max={100}
+              step={1}
+              value={volume}
+              className="accent-white bg-white h-1 range-sm max-w-16 rounded-full"
+              onChange={(event) => setVolume(Number(event.target.value))}
+            />
             <p className="text-xs font-semibold select-none">
               {formattedSeek} / {formattedTotal}
             </p>

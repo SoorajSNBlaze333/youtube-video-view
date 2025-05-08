@@ -22,6 +22,7 @@ export type ControlsState = {
   percentages: number[];
   showControls: boolean;
   animatePlay: string | null;
+  volume: number;
 };
 
 export const useControls = () => {
@@ -34,6 +35,7 @@ export const useControls = () => {
     percentages: [100],
     showControls: true,
     animatePlay: null,
+    volume: 100,
   });
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -107,6 +109,13 @@ export const useControls = () => {
     }));
   };
 
+  const setVolume = (volume: number) => {
+    setVideoState((prev) => ({
+      ...prev,
+      volume,
+    }));
+  };
+
   return {
     ...videoState,
     formattedSeek: timeFormat(videoState.seek),
@@ -118,5 +127,6 @@ export const useControls = () => {
     toggleAutoplay,
     displayControls,
     hideControls,
+    setVolume,
   };
 };
