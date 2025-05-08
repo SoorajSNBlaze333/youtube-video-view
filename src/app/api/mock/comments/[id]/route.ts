@@ -90,17 +90,6 @@ export async function GET(
       dislikes: 0,
       replies: 0,
     },
-    {
-      id: "xm1yp4",
-      picture: "https://i.pravatar.cc/200",
-      commenter: "@keithcastrowilliam",
-      commented: "2 years ago",
-      comment:
-        "The mouse was so hungry he ran across the kitchen floor without even looking for humans.",
-      likes: 2,
-      dislikes: 0,
-      replies: 0,
-    },
   ];
 
   const id = (await params).id;
