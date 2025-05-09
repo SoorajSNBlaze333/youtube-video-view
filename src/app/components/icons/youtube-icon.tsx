@@ -14,7 +14,7 @@ export default function YoutubeIcon() {
       <p
         className={`${robotoCondensed.className} text-black text-xl tracking-tighter font-semibold capitalize`}
       >
-        YouTubå (Clone)
+        YouTubå
       </p>
     </div>
   );

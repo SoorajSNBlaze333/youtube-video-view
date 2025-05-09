@@ -120,9 +120,8 @@ export default function Controls() {
           transition={{ duration: 0.2 }}
         >
           <Icon
-            className="cursor-pointer"
+            className="cursor-pointer size-4 md:size-6"
             weight="fill"
-            size={24}
             onClick={handleClick}
           />
         </motion.div>
@@ -242,24 +241,25 @@ export default function Controls() {
               />
             </div>
           </section>
-          <section className="h-12 relative w-full grid grid-cols-2 px-4 pb-2  bg-gradient-to-t from-black/50 to-transparent">
-            <section className="col-span-1 flex gap-6 justify-start items-center px-3 text-white">
+          <section className="h-12 relative w-full grid grid-cols-9 md:grid-cols-2 px-4 pb-2  bg-gradient-to-t from-black/50 to-transparent">
+            <section className="col-span-5 md:col-span-1 flex gap-3 md:gap-6 justify-start items-center px-3 text-white">
               {!isPlaying ? (
                 <Play
                   onClick={playVideo}
-                  className="cursor-pointer"
+                  className="cursor-pointer size-4 md:size-6"
                   weight="fill"
-                  size={24}
                 />
               ) : (
                 <Pause
                   onClick={pauseVideo}
-                  className="cursor-pointer"
+                  className="cursor-pointer size-4 md:size-6"
                   weight="fill"
-                  size={24}
                 />
               )}
-              <SkipForward className="cursor-pointer" weight="fill" size={24} />
+              <SkipForward
+                className="cursor-pointer size-4 md:size-6"
+                weight="fill"
+              />
               <div
                 className="flex justify-between items-center gap-6"
                 onMouseOver={handleVolumeShow}
@@ -267,12 +267,7 @@ export default function Controls() {
               >
                 {renderVolume()}
                 {volumeShow && (
-                  <motion.div
-                    initial={{ width: 0, left: 0 }}
-                    animate={{ width: "64px", left: 0 }}
-                    transition={{ duration: 0.12 }}
-                    className="w-16 relative h-6 flex justify-center items-center"
-                  >
+                  <div className="w-10 md:w-16 relative h-6 flex justify-center items-center">
                     <input
                       type="range"
                       min={0}
@@ -298,42 +293,58 @@ export default function Controls() {
                         }}
                       />
                     </div>
-                  </motion.div>
+                  </div>
                 )}
               </div>
               <p className="text-xs font-semibold select-none">
                 {formattedSeek} / {formattedTotal}
               </p>
             </section>
-            <section className="col-span-1 flex gap-6 justify-end items-center px-3 text-white">
-              <Switch
-                checked={isAutoplayEnabled}
-                onChange={toggleAutoplay}
-                className="group relative flex h-3 w-8 cursor-pointer rounded-full bg-gray-400 p-1 ease-in-out focus:not-data-focus:outline-none data-focus:outline data-focus:outline-white"
-              >
-                <span
-                  aria-hidden="true"
-                  className={`pointer-events-none size-4.5 -translate-x-2 -translate-y-1.75 rounded-full ${
-                    isAutoplayEnabled ? "bg-white" : "bg-gray-500"
-                  } shadow-lg ring-0 transition duration-100 flex justify-center items-center ease-in-out group-data-checked:translate-x-3.5`}
+            <section className="col-span-4 md:col-span-1 flex gap-3 md:gap-6 justify-end items-center px-3 text-white">
+              <div className="scale-75 md:scale-100">
+                <Switch
+                  checked={isAutoplayEnabled}
+                  onChange={toggleAutoplay}
+                  className="group relative flex h-3 w-8 cursor-pointer rounded-full bg-gray-400 p-1 ease-in-out focus:not-data-focus:outline-none data-focus:outline data-focus:outline-white"
                 >
-                  {isAutoplayEnabled ? (
-                    <Play className="text-black" weight="fill" size={10} />
-                  ) : (
-                    <Pause className="text-white" weight="fill" size={10} />
-                  )}
-                </span>
-              </Switch>
-              <Subtitles className="cursor-pointer" weight="fill" size={24} />
-              <GearSix className="cursor-pointer" weight="fill" size={24} />
-              <PictureInPicture
-                className="cursor-pointer"
-                weight="bold"
-                size={24}
+                  <span
+                    aria-hidden="true"
+                    className={`pointer-events-none size-4.5 -translate-x-2 -translate-y-1.75 rounded-full ${
+                      isAutoplayEnabled ? "bg-white" : "bg-gray-500"
+                    } shadow-lg ring-0 transition duration-100 flex justify-center items-center ease-in-out group-data-checked:translate-x-3.5`}
+                  >
+                    {isAutoplayEnabled ? (
+                      <Play className="text-black" weight="fill" size={10} />
+                    ) : (
+                      <Pause className="text-white" weight="fill" size={10} />
+                    )}
+                  </span>
+                </Switch>
+              </div>
+              <Subtitles
+                className="cursor-pointer size-4 md:size-6"
+                weight="fill"
               />
-              <Rectangle className="cursor-pointer" weight="bold" size={24} />
-              <Airplay className="cursor-pointer" weight="bold" size={24} />
-              <CornersOut className="cursor-pointer" weight="bold" size={24} />
+              <GearSix
+                className="cursor-pointer size-4 md:size-6"
+                weight="fill"
+              />
+              <PictureInPicture
+                className="cursor-pointer size-4 md:size-6"
+                weight="bold"
+              />
+              <Rectangle
+                className="cursor-pointer size-4 md:size-6"
+                weight="bold"
+              />
+              <Airplay
+                className="hidden md:block cursor-pointer size-6"
+                weight="bold"
+              />
+              <CornersOut
+                className="cursor-pointer size-4 md:size-6"
+                weight="bold"
+              />
             </section>
           </section>
         </section>

@@ -29,10 +29,14 @@ export default function VideoMetadata() {
             height={30}
             width={30}
           />
-          <section className="flex flex-col tracking-tight mr-4">
-            <p className="font-bold font-lg cursor-pointer">{name}</p>
-            <p className="text-gray-500 text-xs font-semibold">{subscribers}</p>
-          </section>
+          <div className="hidden md:block">
+            <section className="flex flex-col tracking-tight mr-4">
+              <p className="font-bold font-lg cursor-pointer">{name}</p>
+              <p className="text-gray-500 text-xs font-semibold">
+                {subscribers}
+              </p>
+            </section>
+          </div>
           <button className="rounded-full flex gap-2 bg-gray-100 hover:bg-gray-200 py-2 px-2.5 cursor-pointer">
             <BellIcon className="size-5" />
             <p className="text-sm font-bold">Subscribed</p>
@@ -53,10 +57,12 @@ export default function VideoMetadata() {
           <button className="bg-gray-100 hover:bg-gray-200 p-2 rounded-full cursor-pointer flex gap-2 py-2 px-2.5">
             <p className="text-sm font-bold">Share</p>
           </button>
-          <button className="bg-gray-100 hover:bg-gray-200 p-2 rounded-full cursor-pointer flex gap-2 py-2 px-2.5">
-            <HeartIcon className="size-5" />
-            <p className="text-sm font-bold">Thanks</p>
-          </button>
+          <div className="hidden md:block">
+            <button className="bg-gray-100 hover:bg-gray-200 p-2 rounded-full cursor-pointer flex gap-2 py-2 px-2.5">
+              <HeartIcon className="size-5" />
+              <p className="text-sm font-bold">Thanks</p>
+            </button>
+          </div>
           <button className="bg-gray-100 hover:bg-gray-200 p-2 rounded-full cursor-pointer">
             <EllipsisHorizontalIcon className="size-6" />
           </button>
