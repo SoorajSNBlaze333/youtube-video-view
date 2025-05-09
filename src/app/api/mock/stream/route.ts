@@ -1,8 +1,8 @@
-export const runtime = "nodejs";
-
 import fs from "fs";
 import path from "path";
 import { NextRequest } from "next/server";
+
+export const runtime = "nodejs";
 
 export async function GET(req: NextRequest) {
   const range = req.headers.get("range");
