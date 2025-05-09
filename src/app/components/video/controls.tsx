@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   Airplay,
   CornersOut,
@@ -19,11 +19,8 @@ import { Switch } from "@headlessui/react";
 import { useControls } from "@/app/hooks/use-controls";
 import { AnimatePresence, motion } from "motion/react";
 import { OnProgressProps } from "react-player/base";
-import dynamic from "next/dynamic";
-import type ReactPlayerClass from "react-player";
 import { ArrowPathIcon } from "@heroicons/react/24/outline";
-
-const ReactPlayer = dynamic(() => import("react-player/lazy"), { ssr: false });
+import ReactPlayer from "react-player";
 
 export default function Controls() {
   const {
@@ -46,8 +43,13 @@ export default function Controls() {
     setVolume,
     setLoaded,
   } = useControls();
-  const reactPlayerRef = useRef<ReactPlayerClass | null>(null);
+  const reactPlayerRef = useRef<ReactPlayer | null>(null);
   const [volumeShow, setVolumeShow] = useState(false);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const handleDisplayControls = () => {
     if (isPlaying) {
@@ -134,30 +136,34 @@ export default function Controls() {
       onMouseLeave={handleHideControls}
     >
       {percentage < 100 ? (
-        <ReactPlayer
-          ref={reactPlayerRef}
-          fallback={
-            <div className="h-full w-full bg-black flex justify-center items-center"></div>
-          }
-          playing={isPlaying}
-          volume={volume / 100}
-          controls={false}
-          progressInterval={500}
-          url="video.mp4"
-          height="100%"
-          width="100%"
-          style={{ aspectRatio: "16/9" }}
-          onProgress={(state: OnProgressProps) => {
-            setPercentage(Math.min(100, state.played * 100));
-            setLoaded(Math.min(100, state.loaded * 100));
-          }}
-          onReady={(player) => {
-            setTotalSeek(player.getDuration());
-          }}
-          onEnded={() => {
-            pauseVideo();
-          }}
-        />
+        isClient ? (
+          <ReactPlayer
+            ref={reactPlayerRef}
+            fallback={
+              <div className="h-full w-full bg-black flex justify-center items-center"></div>
+            }
+            playing={isPlaying}
+            volume={volume / 100}
+            controls={false}
+            progressInterval={500}
+            url="/api/mock/stream"
+            height="100%"
+            width="100%"
+            style={{ aspectRatio: "16/9" }}
+            onProgress={(state: OnProgressProps) => {
+              setPercentage(Math.min(100, state.played * 100));
+              setLoaded(Math.min(100, state.loaded * 100));
+            }}
+            onReady={(player) => {
+              setTotalSeek(player.getDuration());
+            }}
+            onEnded={() => {
+              pauseVideo();
+            }}
+          />
+        ) : (
+          <p>The video player cannot render on the server side</p>
+        )
       ) : (
         <div className="absolute top-0 left-0 h-full w-full bg-black flex justify-center items-center">
           <ArrowPathIcon
@@ -233,7 +239,7 @@ export default function Controls() {
               />
             </div>
           </section>
-          <section className="h-12 relative w-full grid grid-cols-2 px-4 pb-2">
+          <section className="h-12 relative w-full grid grid-cols-2 px-4 pb-2  bg-gradient-to-t from-black/50 to-transparent">
             <section className="col-span-1 flex gap-6 justify-start items-center px-3 text-white">
               {!isPlaying ? (
                 <Play
