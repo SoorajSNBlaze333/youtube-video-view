@@ -12,7 +12,7 @@ export default function YoutubeIcon() {
         <PlayIcon className="size-3" />
       </div>
       <p
-        className={`${robotoCondensed.className} text-black text-xl tracking-tighter font-semibold capitalize`}
+        className={`${robotoCondensed.className} text-black dark:text-white text-xl tracking-tight font-semibold capitalize`}
       >
         YouTubå
       </p>

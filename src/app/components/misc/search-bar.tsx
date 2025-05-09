@@ -17,7 +17,7 @@ export default function SearchBar() {
 
       return (
         <section
-          className="absolute bg-white z-20 drop-shadow-md py-4 rounded-xl"
+          className="absolute bg-white dark:bg-black z-40 drop-shadow-md py-4 rounded-xl"
           style={{
             top: `${top}px`,
             left: `${left}px`,
@@ -27,7 +27,7 @@ export default function SearchBar() {
           {searchItems.map((item, index) => (
             <div
               key={index}
-              className="p-2 px-4 flex justify-between items-center hover:bg-gray-100 cursor-default"
+              className="p-2 px-4 flex justify-between items-center hover:bg-gray-100 hover:dark:bg-gray-800 cursor-default"
             >
               <div className="flex justify-start items-center gap-2">
                 <ClockIcon className="size-5" />
@@ -59,17 +59,17 @@ export default function SearchBar() {
             <MagnifyingGlassIcon className="size-5" />
           </label>
           <input
-            className="z-10 w-full outline-none border-[1px] px-4 placeholder-gray-600 border-gray-300 rounded-l-full p-2 focus:border-blue-400 focus:rounded-l-none focus:border-l-0"
+            className="z-10 w-full outline-none border-[1px] px-4 bg-white dark:bg-black placeholder-gray-600 dark:placeholder-gray-300 border-gray-300 dark:border-gray-700 rounded-l-full p-2 focus:border-blue-400 focus:dark:border-blue-400 focus:rounded-l-none focus:border-l-0"
             placeholder="Search"
             onFocus={() => setIsSearchFocused(true)}
             onBlur={() => setIsSearchFocused(false)}
           />
-          <button className="border-[1px] border-l-0 border-gray-300 px-4 py-2.5 pl-6 rounded-r-full bg-gray-100 cursor-pointer hover:bg-gray-200">
+          <button className="border-[1px] border-l-0 border-gray-300 dark:border-gray-700 px-4 py-2.5 pl-6 rounded-r-full bg-gray-100 dark:bg-gray-800 cursor-pointer hover:bg-gray-200">
             <MagnifyingGlassIcon className="size-5" />
           </button>
           {renderDropdown()}
         </div>
-        <button className="p-2.5 rounded-full bg-gray-100 cursor-pointer hover:bg-gray-200">
+        <button className="p-2.5 rounded-full bg-gray-100 dark:bg-gray-800 cursor-pointer hover:bg-gray-200 hover:dark:bg-gray-700">
           <MicrophoneIcon className="size-5" />
         </button>
       </section>

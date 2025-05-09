@@ -12,12 +12,12 @@ export default function UserActions() {
         <button className="block md:hidden rounded-full p-2 hover:bg-slate-100 relative cursor-pointer">
           <MicrophoneIcon className="size-5" />
         </button>
-        <button className="rounded-full bg-gray-100 p-2 px-4 flex gap-1 justify-center items-center cursor-pointer hover:bg-gray-200">
+        <button className="rounded-full p-2 px-4 flex gap-1 justify-center items-center bg-gray-100 dark:bg-gray-800 cursor-pointer hover:bg-gray-200 hover:dark:bg-gray-700">
           <PlusIcon className="size-6" />
-          <p className="text-black font-bold text-sm">Create</p>
+          <p className="text-black dark:text-white font-bold text-sm">Create</p>
         </button>
-        <button className="rounded-full p-2 hover:bg-slate-100 relative cursor-pointer">
-          <p className="bg-red-500 absolute z-20 -right-1.5 top-0.5 text-xs px-1 rounded-full text-white border-2 border-white">
+        <button className="rounded-full p-2 hover:bg-slate-100 hover:dark:bg-gray-700 relative cursor-pointer">
+          <p className="bg-red-500 absolute z-20 -right-1.5 top-0.5 text-xs px-1 rounded-full text-white border-2 border-white dark:border-black">
             5+
           </p>
           <BellIcon className="size-6" />

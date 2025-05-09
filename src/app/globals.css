@@ -1,4 +1,7 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @layer utilities {
   .no-scrollbar::-webkit-scrollbar {
     display: none;
@@ -27,36 +30,5 @@ html, body, :root {
 
 html {
   overflow: hidden;
-}
-
-input[type="range"].range-thumb::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  height: 16px;
-  width: 16px;
-  background-color: #ef4444; /* Tailwind red-500 */
-  border-radius: 9999px;
-  margin-top: -6px; /* centers thumb vertically */
-  position: relative;
-  z-index: 10;
-}
-
-input[type="range"].range-thumb::-moz-range-thumb {
-  height: 16px;
-  width: 16px;
-  background-color: #ef4444;
-  border-radius: 9999px;
-  border: none;
-  cursor: pointer;
-}
-
-/* Track styles (optional) */
-input[type="range"].range-thumb::-webkit-slider-runnable-track {
-  height: 8px;
-  border-radius: 9999px;
-}
-
-input[type="range"].range-thumb::-moz-range-track {
-  height: 8px;
-  border-radius: 9999px;
 }
 
