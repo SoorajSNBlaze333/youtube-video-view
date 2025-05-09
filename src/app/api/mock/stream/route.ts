@@ -24,6 +24,7 @@ export async function GET(req: NextRequest) {
     "Accept-Ranges": "bytes",
     "Content-Length": `${end - start + 1}`,
     "Content-Type": "video/mp4",
+    "Cache-Control": "no-store",
   };
 
   const nodeStream = fs.createReadStream(videoPath, { start, end });
