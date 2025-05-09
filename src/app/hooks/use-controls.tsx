@@ -18,6 +18,7 @@ export type ControlsState = {
   isAutoplayEnabled: boolean;
   percentage: number;
   seek: number;
+  loaded: number;
   totalSeek: number;
   percentages: number[];
   showControls: boolean;
@@ -31,6 +32,7 @@ export const useControls = () => {
     isAutoplayEnabled: true,
     percentage: 0,
     seek: 0,
+    loaded: 0,
     totalSeek: 900,
     percentages: [100],
     showControls: true,
@@ -64,6 +66,13 @@ export const useControls = () => {
     setVideoState((prev) => ({
       ...prev,
       percentage,
+    }));
+  };
+
+  const setSeek = (seek: number) => {
+    setVideoState((prev) => ({
+      ...prev,
+      seek,
     }));
   };
 
@@ -116,6 +125,13 @@ export const useControls = () => {
     }));
   };
 
+  const setLoaded = (loaded: number) => {
+    setVideoState((prev) => ({
+      ...prev,
+      loaded,
+    }));
+  };
+
   return {
     ...videoState,
     formattedSeek: timeFormat(videoState.seek),
@@ -128,5 +144,7 @@ export const useControls = () => {
     displayControls,
     hideControls,
     setVolume,
+    setSeek,
+    setLoaded,
   };
 };

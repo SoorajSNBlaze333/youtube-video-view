@@ -6,10 +6,10 @@ export default function ActiveVideo() {
   return (
     <section className="col-span-1 md:col-span-4 xxl:col-span-6">
       <Controls>
-        <div
+        {/* <div
           className="bg-no-repeat bg-cover flex justify-center items-center aspect-video relative"
           style={{ backgroundImage: `url("video-preview-1.jpg")` }}
-        ></div>
+        ></div> */}
       </Controls>
       <CommentsProvider>
         <VideoMetadata />
