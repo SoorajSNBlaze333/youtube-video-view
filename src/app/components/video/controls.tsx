@@ -21,6 +21,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { OnProgressProps } from "react-player/base";
 import { ArrowPathIcon } from "@heroicons/react/24/outline";
 import ReactPlayer from "react-player";
+import { Loader } from "../misc/loader";
 
 export default function Controls() {
   const {
@@ -162,7 +163,9 @@ export default function Controls() {
             }}
           />
         ) : (
-          <p>The video player cannot render on the server side</p>
+          <div className="absolute top-0 left-0 h-full w-full bg-black flex justify-center items-center">
+            <Loader />
+          </div>
         )
       ) : (
         <div className="absolute top-0 left-0 h-full w-full bg-black flex justify-center items-center">
