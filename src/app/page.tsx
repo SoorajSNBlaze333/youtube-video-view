@@ -6,6 +6,7 @@ import { ShortsProvider } from "./context/shorts-context";
 import { RelatedVideosProvider } from "./context/related-videos-context";
 import { CommentsProvider } from "./context/comment-context";
 import { ThemeProvider } from "./context/theme-context";
+import { ControlsProvider } from "./context/controls-context";
 import App from "./app";
 
 export default function Home() {
@@ -16,7 +17,9 @@ export default function Home() {
           <ShortsProvider>
             <RelatedVideosProvider>
               <CommentsProvider>
-                <App />
+                <ControlsProvider>
+                  <App />
+                </ControlsProvider>
               </CommentsProvider>
             </RelatedVideosProvider>
           </ShortsProvider>

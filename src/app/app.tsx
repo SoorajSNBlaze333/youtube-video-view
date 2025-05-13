@@ -1,4 +1,4 @@
-import ActiveVideo from "./components/active-video";
+import ActiveVideo from "./components/video";
 import Navbar from "./components/auth/navbar";
 import { Comments } from "./components/comments/comments";
 import Shorts from "./components/shorts";
