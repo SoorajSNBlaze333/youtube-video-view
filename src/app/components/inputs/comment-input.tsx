@@ -25,7 +25,7 @@ export const CommentInput = () => {
       <div className="w-full flex flex-col">
         <div className="relative w-full flex justify-center items-center">
           <input
-            className="w-full relative py-2 placeholder-gray-600 text-sm outline-0 border-b-[1px] border-gray-400"
+            className="w-full relative py-2 placeholder-gray-600 text-sm outline-0 border-b-[1px] border-gray-400 focus:outline-none"
             placeholder="Add a comment..."
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
