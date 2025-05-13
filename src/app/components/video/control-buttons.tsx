@@ -33,6 +33,8 @@ export default function ControlButtons() {
     pauseVideo,
     toggleAutoplay,
     toggleFullscreen,
+    toggleTheaterMode,
+    togglePipMode,
   } = useControls();
 
   const handleRestart = () => {
@@ -178,8 +180,13 @@ export default function ControlButtons() {
         <PictureInPicture
           className="cursor-pointer size-4 md:size-6"
           weight="bold"
+          onClick={togglePipMode}
         />
-        <Rectangle className="cursor-pointer size-4 md:size-6" weight="bold" />
+        <Rectangle
+          onClick={toggleTheaterMode}
+          className="cursor-pointer size-4 md:size-6"
+          weight="bold"
+        />
         <Airplay
           className="hidden md:block cursor-pointer size-6"
           weight="bold"

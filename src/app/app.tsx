@@ -5,10 +5,11 @@ import Shorts from "./components/shorts";
 import VideoMetadata from "./components/video-metadata";
 import VideoTags from "./components/video-tags";
 import VideosList from "./components/videos-list";
+import MiniPlayer from "./components/video/miniplayer";
 
 export default function App() {
   return (
-    <>
+    <section className="h-full w-full relative">
       <Navbar />
       <div className="py-6 px-6 xxl:px-20 grid grid-cols-1 md:grid-cols-6 xxl:grid-cols-8 gap-6 h-full overflow-y-scroll">
         <section className="col-span-1 md:col-span-4 xxl:col-span-6">
@@ -22,6 +23,7 @@ export default function App() {
           <VideosList />
         </section>
       </div>
-    </>
+      <MiniPlayer />
+    </section>
   );
 }

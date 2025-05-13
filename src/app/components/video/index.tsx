@@ -19,6 +19,7 @@ export default function ActiveVideo() {
     playVideo,
     pauseVideo,
     showControls,
+    pipMode,
     displayControls,
     hideControls,
     setPercentage,
@@ -29,6 +30,7 @@ export default function ActiveVideo() {
     isFullscreen,
     playbackSpeed,
     toggleFullscreen,
+    setSeekSync,
   } = useControls();
   const reactPlayerRef = useRef<ReactPlayer | null>(null);
   const [isClient, setIsClient] = useState(false);
@@ -72,18 +74,25 @@ export default function ActiveVideo() {
           <div className="absolute top-0 left-0 h-full w-full bg-black flex justify-center items-center"></div>
         }
         playing={isPlaying}
-        volume={volume / 100}
+        volume={pipMode ? 0 : volume / 100}
         controls={false}
         progressInterval={500}
         url="/api/mock/stream"
         height={"100%"}
         width={"100%"}
         playbackRate={playbackSpeed}
-        style={{ aspectRatio: "16/9", position: "absolute", top: 0, left: 0 }}
+        style={{
+          aspectRatio: "16/9",
+          position: "absolute",
+          top: 0,
+          left: 0,
+          opacity: pipMode ? 0 : 1,
+        }}
         onProgress={(state: OnProgressProps) => {
           setPercentage(Math.min(100, state.played * 100));
           setLoaded(Math.min(100, state.loaded * 100));
         }}
+        onSeek={(seconds: number) => setSeekSync(seconds)}
         onReady={(player) => {
           setTotalSeek(player.getDuration());
         }}

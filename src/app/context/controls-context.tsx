@@ -28,6 +28,9 @@ export type ControlsState = {
   formattedTotal: string;
   isFullscreen: boolean;
   playbackSpeed: number;
+  theaterMode: boolean;
+  pipMode: boolean;
+  seekSync: number;
   setPercentage: (percentage: number) => void;
   setSeek: (seek: number) => void;
   setTotalSeek: (totalSeek: number) => void;
@@ -40,6 +43,9 @@ export type ControlsState = {
   setLoaded: (loaded: number) => void;
   toggleFullscreen: () => void;
   setPlaybackSpeed: (playbackSpeed: number) => void;
+  toggleTheaterMode: () => void;
+  togglePipMode: () => void;
+  setSeekSync: (seekSync: number) => void;
 };
 
 const initialState = {
@@ -57,6 +63,9 @@ const initialState = {
   formattedTotal: "",
   isFullscreen: false,
   playbackSpeed: 1,
+  theaterMode: false,
+  pipMode: false,
+  seekSync: 0,
   setPercentage: () => {},
   setSeek: () => {},
   setTotalSeek: () => {},
@@ -69,6 +78,9 @@ const initialState = {
   setLoaded: () => {},
   toggleFullscreen: () => {},
   setPlaybackSpeed: () => {},
+  toggleTheaterMode: () => {},
+  togglePipMode: () => {},
+  setSeekSync: () => {},
 };
 
 export const ControlsContext = createContext<ControlsState>(initialState);
@@ -183,9 +195,34 @@ export function ControlsProvider({ children }: { children: ReactNode }) {
   };
 
   const toggleFullscreen = () => {
+    if (!videoState.pipMode) {
+      setVideoState((prev) => ({
+        ...prev,
+        isFullscreen: !prev.isFullscreen,
+      }));
+    }
+  };
+
+  const toggleTheaterMode = () => {
     setVideoState((prev) => ({
       ...prev,
-      isFullscreen: !prev.isFullscreen,
+      theaterMode: !prev.theaterMode,
+    }));
+  };
+
+  const togglePipMode = () => {
+    if (!videoState.isFullscreen) {
+      setVideoState((prev) => ({
+        ...prev,
+        pipMode: !prev.pipMode,
+      }));
+    }
+  };
+
+  const setSeekSync = (seekSync: number) => {
+    setVideoState((prev) => ({
+      ...prev,
+      seekSync,
     }));
   };
 
@@ -205,6 +242,9 @@ export function ControlsProvider({ children }: { children: ReactNode }) {
     setLoaded,
     toggleFullscreen,
     setPlaybackSpeed,
+    toggleTheaterMode,
+    togglePipMode,
+    setSeekSync,
   };
 
   return (
