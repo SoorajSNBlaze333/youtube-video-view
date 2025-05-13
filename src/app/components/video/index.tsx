@@ -135,7 +135,7 @@ export default function ActiveVideo() {
       return (
         <section className="absolute h-full w-full flex justify-center items-center z-10 top-0 left-0">
           <div
-            className="h-52 w-52 flex justify-center items-center"
+            className="h-[85%] -mt-16 w-full flex justify-center items-center"
             onClick={handleVideoClick}
             onDoubleClick={toggleFullscreen}
           >
