@@ -1,6 +1,7 @@
 import { MicrophoneIcon, PlusIcon } from "@heroicons/react/24/solid";
 import { BellIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import Profile from "./profile";
+import { GithubLogo } from "@phosphor-icons/react";
 
 export default function UserActions() {
   return (
@@ -23,6 +24,13 @@ export default function UserActions() {
           <BellIcon className="size-6" />
         </button>
         <Profile />
+        <a
+          target="_blank"
+          href="https://github.com/SoorajSNBlaze333/youtube-video-view"
+          className="rounded-full p-2 hover:bg-slate-100"
+        >
+          <GithubLogo className="size-6" weight="fill" />
+        </a>
       </div>
     </section>
   );
