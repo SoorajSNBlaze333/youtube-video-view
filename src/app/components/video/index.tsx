@@ -28,6 +28,7 @@ export default function ActiveVideo() {
     setLoaded,
     isFullscreen,
     playbackSpeed,
+    toggleFullscreen,
   } = useControls();
   const reactPlayerRef = useRef<ReactPlayer | null>(null);
   const [isClient, setIsClient] = useState(false);
@@ -127,6 +128,7 @@ export default function ActiveVideo() {
           <div
             className="h-52 w-52 flex justify-center items-center"
             onClick={handleVideoClick}
+            onDoubleClick={toggleFullscreen}
           >
             {(animatePlay === "play" || animatePlay === "pause") && (
               <motion.div

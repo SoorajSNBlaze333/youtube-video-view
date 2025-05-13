@@ -35,7 +35,7 @@ export async function GET() {
   const video = {
     id: "eIcWmL",
     tags,
-    title: "This is an Amazing Video! - Sooraj Sivadasan Nair",
+    title: "This is an Amazing Video!",
     channel: {
       id: "2efcfw",
       name: "Channel A",

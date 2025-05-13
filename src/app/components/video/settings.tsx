@@ -85,7 +85,7 @@ export default function SettingsDropdown() {
         transition
         anchor="top start"
         static
-        className={`w-56 absolute z-50 [--anchor-gap:30px] origin-top-right rounded-lg bg-black/70 ${
+        className={`w-56 absolute z-50 [--anchor-gap:30px] origin-top-right rounded-lg bg-black/80 ${
           isFullscreen ? "text-sm" : "text-xs"
         } text-white focus:outline-none data-closed:scale-95 data-closed:opacity-0`}
       >
